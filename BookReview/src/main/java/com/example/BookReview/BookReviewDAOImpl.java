@@ -1,7 +1,10 @@
 package com.example.BookReview;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+@Service
 public class BookReviewDAOImpl implements BookReviewDAO{
     private List<BookDTO> bookList;
     private List<ReviewDTO> reviewList;
