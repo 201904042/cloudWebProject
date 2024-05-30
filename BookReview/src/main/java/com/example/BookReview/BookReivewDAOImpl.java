@@ -1,6 +1,5 @@
 package com.example.BookReview;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,10 +14,11 @@ public class BookReivewDAOImpl implements BookReviewDAO{
 
     @Override
     public List<BookDTO> GetBookData(){ //메인페이지 -> 책 리스트
+
         return bookList;
     }
     @Override
-    public BookDTO getBookById(long bookId){ //메인페이지->책 검색
+    public BookDTO GetBookById(long bookId){ //메인페이지->책 검색
         return  bookList.stream()
                 .filter(book ->  book.getBookId() == bookId)
                 .findFirst()
@@ -57,7 +57,7 @@ public class BookReivewDAOImpl implements BookReviewDAO{
     }
 
     @Override
-    public List<ReviewDTO> getReviewByBookId(long bookId){ //책상세페이지 -> 리뷰리스트
+    public List<ReviewDTO> GetReviewByBookId(long bookId){ //책상세페이지 -> 리뷰리스트
         List<ReviewDTO> ReviewWithBookId = new ArrayList<>();
 
         ReviewWithBookId =  reviewList.stream()
@@ -74,7 +74,7 @@ public class BookReivewDAOImpl implements BookReviewDAO{
     }
 
     @Override
-    public ReviewDTO DeleteReviewlong(long deleteReviewId) { //책상세페이지 -> 리뷰 삭제
+    public ReviewDTO DeleteReview(long deleteReviewId) { //책상세페이지 -> 리뷰 삭제
         ReviewDTO deleteReview = reviewList.stream()
                 .filter(review -> review.getReviewId() == deleteReviewId)
                 .findFirst()
