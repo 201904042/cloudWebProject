@@ -14,7 +14,7 @@ public class BookReviewController {
     public List<BookDTO> GetBookData(){
         return bookReviewService.GetBookData();
     }
-    @GetMapping("/bookReview/book/{id}")
+    @GetMapping("/bookReview/book/{bookId}")
     public BookDTO GetBookById(@PathVariable long bookId){
         return bookReviewService.GetBookById(bookId);
     }
@@ -22,7 +22,7 @@ public class BookReviewController {
     public BookDTO InsertBook(@RequestBody BookDTO book){
         return bookReviewService.InsertBook(book);
     }
-    @DeleteMapping("/bookReview/book")
+    @DeleteMapping("/bookReview/book/{deleteBookId}")
     public BookDTO DeleteBook(@PathVariable long deleteBookId){
         return bookReviewService.DeleteBook(deleteBookId);
     }
@@ -30,7 +30,12 @@ public class BookReviewController {
     public BookDTO UpdateBook(@RequestBody BookDTO _updateBook){
         return bookReviewService.UpdateBook(_updateBook);
     }
-    @GetMapping("/bookReview/review/{id}")
+
+    @GetMapping("/bookReview/review")
+    public List<ReviewDTO> GetReview(){
+        return bookReviewService.GetReview();
+    }
+    @GetMapping("/bookReview/review/{bookId}")
     public List<ReviewDTO> GetReviewByBookId(@PathVariable long bookId){
         return bookReviewService.GetReviewByBookId(bookId);
     }
@@ -38,7 +43,7 @@ public class BookReviewController {
     public ReviewDTO InsertReview(@RequestBody ReviewDTO newReview){
         return bookReviewService.InsertReview(newReview);
     }
-    @DeleteMapping("/bookReview/review")
+    @DeleteMapping("/bookReview/review/{deleteReviewId}")
     public ReviewDTO DeleteReview(@PathVariable long deleteReviewId){
         return bookReviewService.DeleteReview(deleteReviewId);
     }

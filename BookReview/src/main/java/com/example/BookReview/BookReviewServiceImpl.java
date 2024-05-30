@@ -28,6 +28,11 @@ public class BookReviewServiceImpl implements BookReviewService{
     public BookDTO UpdateBook(BookDTO _updateBook){
         return bookReviewDAO.UpdateBook(_updateBook);
     }
+
+    @Override
+    public List<ReviewDTO> GetReview(){
+        return bookReviewDAO.GetReview();
+    }
     @Override
     public List<ReviewDTO> GetReviewByBookId(long bookId){
         return bookReviewDAO.GetReviewByBookId(bookId);

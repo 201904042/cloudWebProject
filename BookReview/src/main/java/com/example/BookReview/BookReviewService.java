@@ -12,6 +12,7 @@ public interface BookReviewService {
 
      BookDTO UpdateBook(BookDTO _updateBook);
 
+     List<ReviewDTO> GetReview();
      List<ReviewDTO> GetReviewByBookId(long bookId);
 
      ReviewDTO InsertReview(ReviewDTO newReview);
