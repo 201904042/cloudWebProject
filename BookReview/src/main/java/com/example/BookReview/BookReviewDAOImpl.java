@@ -11,8 +11,8 @@ public class BookReviewDAOImpl implements BookReviewDAO{
     public BookReviewDAOImpl(){
         bookList = new ArrayList<>();
         reviewList = new ArrayList<>();
-        bookList.add(new BookDTO(0,"testTitle","testAuthor","testGenre","testSummary",0));
-        bookList.add(new BookDTO(1,"testTitle","testAuthor","testGenre","testSummary",0));
+        bookList.add(new BookDTO(0,"testTitle","testAuthor","testGenre","testSummary",2));
+        bookList.add(new BookDTO(1,"testTitle","testAuthor","testGenre","testSummary",2));
 
         reviewList.add(new ReviewDTO(0,"testname",5,0,"test"));
         reviewList.add(new ReviewDTO(1,"testname1",2,0,"test"));
@@ -82,6 +82,12 @@ public class BookReviewDAOImpl implements BookReviewDAO{
         long id = reviewList.get( reviewList.size() - 1).getId() + 1;
         newReview.setId(id);
         reviewList.add(newReview);
+        for (BookDTO book : bookList) {
+            if (book.getId() == newReview.getBookId()) {
+                book.setReviewCount(book.getReviewCount() + 1);
+                break;
+            }
+        }
         return newReview;
     }
 
@@ -92,6 +98,13 @@ public class BookReviewDAOImpl implements BookReviewDAO{
                 .findFirst()
                 .get();
         reviewList.remove(deleteReview);
+
+        for (BookDTO book : bookList) {
+            if (book.getId() == deleteReviewId) {
+                book.setReviewCount(book.getReviewCount() + 1);
+                break;
+            }
+        }
         return deleteReview;
     }
 

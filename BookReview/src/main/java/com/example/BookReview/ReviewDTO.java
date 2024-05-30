@@ -11,7 +11,7 @@ import lombok.*;
 public class ReviewDTO {
     long id;
     String name;
-    int grade;
+    float grade;
     int bookId;
     String content;
 }
