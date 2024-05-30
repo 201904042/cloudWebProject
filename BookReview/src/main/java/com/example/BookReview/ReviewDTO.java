@@ -8,9 +8,9 @@ import lombok.*;
 @Setter
 @ToString
 public class ReviewDTO {
-    long reviewId;
-    String reviewerName;
-    String reviewBookGrade;
-    long reviewBookId;
-    String reviewContent;
+    long id;
+    String name;
+    String grade;
+    long bookId;
+    String content;
 }
