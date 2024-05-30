@@ -38,6 +38,7 @@ public class BookReivewDAOImpl implements BookReviewDAO{
                 .filter(person -> person.getBookId() == deleteBookId)
                 .findFirst()
                 .get();
+        //리뷰
         bookList.remove(deleteBook);
         return deleteBook;
     }
