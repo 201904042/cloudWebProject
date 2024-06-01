@@ -11,8 +11,8 @@ public class BookReviewDAOImpl implements BookReviewDAO{
     public BookReviewDAOImpl(){
         bookList = new ArrayList<>();
         reviewList = new ArrayList<>();
-        bookList.add(new BookDTO(0,"testTitle","testAuthor","testGenre","testSummary",2));
-        bookList.add(new BookDTO(1,"testTitle","testAuthor","testGenre","testSummary",2));
+        bookList.add(new BookDTO(0,"testTitle0","testAuthor","testGenre","testSummary",2));
+        bookList.add(new BookDTO(1,"testTitle1","testAuthor","testGenre","testSummary",2));
 
         reviewList.add(new ReviewDTO(0,"testname",5,0,"test"));
         reviewList.add(new ReviewDTO(1,"testname1",2,0,"test"));

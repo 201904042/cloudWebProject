@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Reviews</title>
+    <!-- 필요한 CSS 파일이 있다면 여기에 추가 -->
+</head>
+<body>
+<h1>Book Reviews</h1>
+<form th:action="@{/bookReview/book/{bookId}(bookId=${bookId})}" method="get">
+    <input type="text" id="_bookId" name="_bookId">
+    <button type="submit">Search</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>Summary</th>
+        <th>Review Count</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- 서버에서 전달된 책 데이터를 반복해서 표시 -->
+    <tr th:each="book : ${books}">
+        <td th:text="${book.id}">ID</td>
+        <td th:text="${book.title}">Title</td>
+        <td th:text="${book.author}">Author</td>
+        <td th:text="${book.genre}">Genre</td>
+        <td th:text="${book.summary}">Summary</td>
+        <td th:text="${book.reviewCount}">Review Count</td>
+    </tr>
+    </tbody>
+</table>
+<!-- 필요한 JavaScript 파일이 있다면 여기에 추가 -->
+</body>
+</html>

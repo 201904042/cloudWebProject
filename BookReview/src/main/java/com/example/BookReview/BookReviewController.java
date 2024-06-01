@@ -1,22 +1,36 @@
 package com.example.BookReview;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Controller
 public class BookReviewController {
     @Autowired
     BookReviewService bookReviewService;
 
     @GetMapping("/bookReview/book")
-    public List<BookDTO> GetBookData(){
-        return bookReviewService.GetBookData();
+    public String GetBookData(Model model){
+        List<BookDTO> books = bookReviewService.GetBookData();
+        model.addAttribute("books",books);
+        return "book_list";
     }
-    @GetMapping("/bookReview/book/{bookId}")
-    public BookDTO GetBookById(@PathVariable long bookId){
-        return bookReviewService.GetBookById(bookId);
+
+    @GetMapping("/bookReview/book/")
+    public String GetBookById(@RequestParam("_bookId") long bookId, Model model){
+        BookDTO book = bookReviewService.GetBookById(bookId);
+        if(book!=null){
+            List<BookDTO> books = new ArrayList<>();
+            books.add(book);
+            model.addAttribute("books", books);
+            return "book_list";
+        }
+        return "book_list";
     }
     @PostMapping("/bookReview/book")
     public BookDTO InsertBook(@RequestBody BookDTO book){
