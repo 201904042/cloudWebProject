@@ -12,12 +12,14 @@ public class BookReviewController {
     @Autowired
     private BookReviewService bookReviewService;
 
-    // Book 관련 엔드포인트
+    // Book 관련 엔드포인트'
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/books")
     public List<BookDTO> getAllBooks() {
         return bookReviewService.bookList();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/books/{id}")
     public ResponseEntity<BookDTO> getBookById(@PathVariable Long id) {
         BookDTO book = bookReviewService.findBookById(id);
@@ -38,6 +40,12 @@ public class BookReviewController {
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
         bookReviewService.deleteBook(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/books/{id}")
+    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody BookDTO bookDTO) {
+        BookDTO updatedBook = bookReviewService.updateBook(id, bookDTO);
+        return ResponseEntity.ok(updatedBook);
     }
 
     @GetMapping("/books/search")

@@ -3,7 +3,7 @@ package com.example.BookReview;
 
 import jakarta.persistence.*;
 import lombok.*;
-@Getter @Builder @ToString
+@Getter @Setter @Builder @ToString
 @NoArgsConstructor @AllArgsConstructor
 @Entity @Table(name="review")
 public class Review {
@@ -12,6 +12,6 @@ public class Review {
     private long id;
     private String name;
     private float grade;
-    private int book_id;
+    private long book_id;
     private String content;
 }

@@ -14,6 +14,8 @@ public interface BookReviewService {
 
     void deleteBook(Long id);
 
+    BookDTO updateBook(Long id, BookDTO bookDTO);
+
     List<BookDTO> searchBooks(String keyword);
 
     boolean checkDuplicate(String title);

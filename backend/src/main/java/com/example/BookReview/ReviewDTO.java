@@ -11,7 +11,7 @@ public class ReviewDTO {
     private long id;
     private String name;
     private float grade;
-    private int book_id;
+    private long book_id;
     private String content;
 
     public ReviewDTO(Review review){

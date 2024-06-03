@@ -4,7 +4,7 @@ package com.example.BookReview;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
+@Getter @Setter
 @Builder @ToString
 @NoArgsConstructor @AllArgsConstructor
 @Entity
@@ -17,5 +17,5 @@ public class Book {
     private String author;
     private String genre;
     private String summary;
-    private int review_count;
+    private long review_count;
 }

@@ -11,7 +11,7 @@ public class BookDTO {
     private String author;
     private String genre;
     private String summary;
-    private int review_count;
+    private long review_count;
 
     public BookDTO(Book book){
          id = book.getId();

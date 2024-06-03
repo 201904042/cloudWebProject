@@ -30,8 +30,6 @@ const BookCreate = () => {
     setLoading(false);
   };
 
-  
-
   return (
     <div>
       <h1>Create New Book</h1>
