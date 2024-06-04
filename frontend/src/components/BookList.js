@@ -1,26 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import axios from 'axios';
-import { getBooks } from "../services/ApiService"
+import { createBook, getBooks } from "../services/ApiService"
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
 
-    useEffect(()=>{
-      async function fetchData(){
-        try{
-          const books = await getBooks();
-          setBooks(books);
-        }catch(error){
-          console.error('error',error);
-        }
+  useEffect(()=>{
+    async function fetchData(){
+      try{
+        const books = await getBooks();
+        setBooks(books);
+      }catch(error){
+        console.error('error',error);
       }
+    }
 
-      fetchData();
-    },[]);
-
-    
-  
-
+    fetchData();
+  },[]);
 
   return (
     <div>
@@ -52,7 +48,8 @@ const BookList = () => {
           )}
         </tbody>
       </table>
-    </div>
+          <hr></hr>
+      </div>
   );
 };
 

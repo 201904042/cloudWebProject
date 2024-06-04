@@ -8,18 +8,17 @@ import java.util.List;
 
 
 @RestController
+@CrossOrigin(origins="*", allowedHeaders = "*")
 public class BookReviewController {
     @Autowired
     private BookReviewService bookReviewService;
 
     // Book 관련 엔드포인트'
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/books")
     public List<BookDTO> getAllBooks() {
         return bookReviewService.bookList();
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/books/{id}")
     public ResponseEntity<BookDTO> getBookById(@PathVariable Long id) {
         BookDTO book = bookReviewService.findBookById(id);
@@ -29,7 +28,7 @@ public class BookReviewController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/books")
     public ResponseEntity<BookDTO> addBook(@RequestBody BookDTO bookDTO) {
         BookDTO savedBook = bookReviewService.addBook(bookDTO);
