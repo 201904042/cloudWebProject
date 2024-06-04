@@ -1,22 +1,26 @@
-import React, { useState, useEffect,useRef } from 'react';
-import axios from 'axios';
-import { createBook, getBooks } from "../services/ApiService"
+import React, { useContext, useEffect } from 'react';
+import { getBooks } from "../services/ApiService"
+import BookTableRow from './BookTableRow.js';
+import { BookContext } from '../context/BookContext';
+import {NavLink} from "react-router-dom";
 
-const BookList = () => {
-  const [books, setBooks] = useState([]);
+export default function BookList(){
+  const { books, updateBooks} = useContext(BookContext);
 
   useEffect(()=>{
     async function fetchData(){
       try{
         const books = await getBooks();
-        setBooks(books);
+        updateBooks(books);
+
+        
       }catch(error){
         console.error('error',error);
       }
     }
-
     fetchData();
   },[]);
+
 
   return (
     <div>
@@ -34,24 +38,14 @@ const BookList = () => {
           </tr>
         </thead>
         <tbody>
-          {(
-            books.map(book => (
-              <tr key={book.id}>
-                <td style={{ textAlign: 'center' }}>{book.id}</td>
-                <td style={{ textAlign: 'left', paddingLeft: '10px' }}>{book.title}</td>
-                <td style={{ textAlign: 'left', paddingLeft: '10px' }}>{book.author}</td>
-                <td style={{ textAlign: 'left', paddingLeft: '10px' }}>{book.genre}</td>
-                <td style={{ textAlign: 'left', paddingLeft: '10px' }}>{book.summary}</td>
-                <td style={{ textAlign: 'center' }}>{book.review_count}</td>
-              </tr>
-            ))
-          )}
+          {books.map(book=><BookTableRow key={book.id}{...book}/>)}
         </tbody>
       </table>
-          <hr></hr>
+      <div>
+        <NavLink className="btn btn-primary" to="/new">Add</NavLink>
+      </div>
       </div>
   );
-};
+}
 
   
-export default BookList;

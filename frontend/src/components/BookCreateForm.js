@@ -1,9 +1,11 @@
 import React, {useContext, useRef} from "react";
 import { createBook } from "../services/ApiService";
-
+import { BookContext } from "../context/BookContext";
+import {useNavigate} from'react-router-dom';
 
 export default function BookCreateForm(){
-
+    const {addBook} = useContext(BookContext);
+    const navigate = useNavigate();
     const titleRef= useRef();
     const authorRef= useRef();
     const genreRef= useRef();
@@ -25,8 +27,8 @@ export default function BookCreateForm(){
     
           const response = await createBook(newBook);
           console.log(response)
-          /*addProduct(response);
-          navigate(`/${response.id}`);*/
+          addBook(response);
+          navigate(`/`);
     
         } catch (error) {
           console.error('Error', error);
