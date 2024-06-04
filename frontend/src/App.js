@@ -1,9 +1,7 @@
-import BookList from "./componenets/bookList"
-import BookCreate from "./componenets/bookCreate"
-
+import BookList from "./components/BookList"
 
 function App() {
-  return <BookCreate/>
+  return <BookList/>
 }
 
 export default App;
