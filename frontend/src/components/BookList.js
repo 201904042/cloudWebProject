@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { getBooks } from "../services/ApiService"
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/books');
-        setBooks(response.data);
-      } catch (error) {
-        console.error('Error fetching books:', error);
+    useEffect(()=>{
+      async function fetchData(){
+        try{
+          const books = await getBooks();
+          setBooks(books);
+        }catch(error){
+          console.error('error',error);
+        }
       }
-    };
 
-    fetchBooks();
-  }, []);
+      fetchData();
+    },[]);
+
+    
+  
 
 
   return (
