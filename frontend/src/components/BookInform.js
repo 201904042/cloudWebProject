@@ -11,6 +11,7 @@ export default function BookInform(){
   const { id } = useParams();
   const {book,updateBook} = useContext(BookContext);
   const { reviews, updateReviews} = useContext(ReviewContext);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   useEffect(()=>{
@@ -39,6 +40,16 @@ export default function BookInform(){
 
   async function add(target) {
       target.preventDefault();
+
+      if (
+        !nameRef.current.value ||
+        !gradeRef.current.value ||
+        !contentRef.current.value
+      ) {
+        setErrorMessage("모든 필드를 입력하세요.");
+        return;
+      }
+
       try {
         const newReview = {
           name: nameRef.current.value,
@@ -100,6 +111,9 @@ export default function BookInform(){
           <button onClick={add} type="submit">생성</button>
         </div>
       )}
+      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+
+        <hr/>
         <table className="reviews-table"></table>
         <thead>
             <tr>
