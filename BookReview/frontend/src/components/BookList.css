@@ -1,0 +1,45 @@
+/* BookList.css */
+.book-list {
+  padding: 10px;
+  align-items: center;
+}
+
+.book-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.book-table th,
+.book-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.book-table th {
+  background-color: #f2f2f2;
+}
+
+.book-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.book-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.btn {
+  margin-right: 5px;
+  text-decoration: none;
+}
+
+.btn-link {
+  color: blue;
+  cursor: pointer;
+}
+
+.btn-danger {
+  color: red;
+  cursor: pointer;
+}

@@ -1,0 +1,42 @@
+.create-form {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header-container h1 {
+  margin-bottom: 0;
+}
+
+.main-btn {
+  margin-left: auto;
+}
+.create-form div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.create-form input,
+.create-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+.create-form textarea {
+  height: 150px;
+}
+
+.create-form button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
