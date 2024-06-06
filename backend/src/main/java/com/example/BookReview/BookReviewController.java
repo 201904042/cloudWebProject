@@ -20,7 +20,7 @@ public class BookReviewController {
     }
 
     @GetMapping("/books/{id}")
-    public ResponseEntity<BookDTO> getBookById(@PathVariable Long id) {
+    public ResponseEntity<BookDTO> getBookById(@PathVariable long id) {
         BookDTO book = bookReviewService.findBookById(id);
         if (book != null) {
             return ResponseEntity.ok(book);
@@ -28,7 +28,6 @@ public class BookReviewController {
             return ResponseEntity.notFound().build();
         }
     }
-    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/books")
     public ResponseEntity<BookDTO> addBook(@RequestBody BookDTO bookDTO) {
         BookDTO savedBook = bookReviewService.addBook(bookDTO);
@@ -36,13 +35,13 @@ public class BookReviewController {
     }
 
     @DeleteMapping("/books/{id}")
-    public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteBook(@PathVariable long id) {
         bookReviewService.deleteBook(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/books/{id}")
-    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody BookDTO bookDTO) {
+    public ResponseEntity<BookDTO> updateBook(@PathVariable long id, @RequestBody BookDTO bookDTO) {
         BookDTO updatedBook = bookReviewService.updateBook(id, bookDTO);
         return ResponseEntity.ok(updatedBook);
     }
@@ -65,7 +64,7 @@ public class BookReviewController {
     }
 
     @GetMapping("/reviews/{id}")
-    public ResponseEntity<ReviewDTO> getReviewById(@PathVariable Long id) {
+    public ResponseEntity<ReviewDTO> getReviewById(@PathVariable long id) {
         ReviewDTO review = bookReviewService.findReviewById(id);
         if (review != null) {
             return ResponseEntity.ok(review);
@@ -81,7 +80,7 @@ public class BookReviewController {
     }
 
     @DeleteMapping("/reviews/{id}")
-    public ResponseEntity<Void> deleteReview(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteReview(@PathVariable long id) {
         bookReviewService.deleteReview(id);
         return ResponseEntity.noContent().build();
     }

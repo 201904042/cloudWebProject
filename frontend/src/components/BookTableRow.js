@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { deleteBookById } from "../services/ApiService"
 import { BookContext } from '../context/BookContext';
 import { NavLink } from "react-router-dom";
-export default function BookTableRow({id,title,author,genre,summary}){
+export default function BookTableRow({id,title,author,genre,summary,review_count}){
 
 
   const {removeBookById} = useContext(BookContext);
@@ -16,21 +16,15 @@ export default function BookTableRow({id,title,author,genre,summary}){
     }
   }
 
-
   return (
     <tr>
         <th>{id}</th>
-        <td>{title}</td>
+        <td><NavLink to={`/Book/${id}`}>{title}</NavLink></td>
         <td>{author}</td>
         <td>{genre}</td>
         <td>{summary}</td>
-        <td>
-        <div className="btn-group">
-          <NavLink cto={`/${id}`}>View</NavLink>
-          <NavLink to={`/${id}/edit`}>Edit</NavLink>
-          <button onClick={deleteBook} >Delete</button>
-        </div>
-      </td>
+        <td>{review_count}</td>
+        <td><button onClick={deleteBook} >Delete</button></td>
         
     </tr>
   );

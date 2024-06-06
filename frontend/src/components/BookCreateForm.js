@@ -1,4 +1,4 @@
-import React, {useContext, useRef} from "react";
+import React, {useContext, useRef,useState} from "react";
 import { createBook } from "../services/ApiService";
 import { BookContext } from "../context/BookContext";
 import {useNavigate} from'react-router-dom';
@@ -10,9 +10,18 @@ export default function BookCreateForm(){
     const authorRef= useRef();
     const genreRef= useRef();
     const summaryRef= useRef();
-
+    const [errorMessage, setErrorMessage] = useState("");
     async function add(target) {
         target.preventDefault();
+        if (
+          !titleRef.current.value ||
+          !authorRef.current.value ||
+          !genreRef.current.value ||
+          !summaryRef.current.value
+        ) {
+          setErrorMessage("모든 필드를 입력하세요.");
+          return;
+        }
     
         try {
     
@@ -28,50 +37,64 @@ export default function BookCreateForm(){
           const response = await createBook(newBook);
           console.log(response)
           addBook(response);
-          navigate(`/`);
+          navigate(`/book`);
     
         } catch (error) {
           console.error('Error', error);
         }
       }
     
+      function goToMain() {
+        navigate(`/book`);
+      }
 
-
-    return(<div><h1>책 등록</h1><hr/>
-    <div>
-        제목<input 
-        type = "text" 
-        name="title" 
-        placeholder="Enter Title"
-        ref ={titleRef}
-        /><br/>
-        저자
-        <input 
-        type = "text" 
-        name="author" 
-        ref ={authorRef}
-        placeholder="Enter Author"
-        /><br/>
-        장르
-        <input 
-        type = "text" 
-        name="genre"
-        ref ={genreRef}
-        placeholder="Enter Genre"
-        /><br/>
-        줄거리
-        <textarea 
-        type = "text" 
-        name="summary"
-        ref ={summaryRef}
-        placeholder="Enter Summary"
-        /><br/>
+    return(<div className="create-form">
+    <div className="header-container">
+      <h1>책 등록</h1>
+      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+      <div className="main-btn">
+        <button onClick={goToMain}>취소</button>
       </div>
+    </div>
+    <hr />
+    <div>
+      제목
+      <input
+        type="text"
+        name="title"
+        placeholder="Enter Title"
+        ref={titleRef}
+      />
+      저자
+      <input
+        type="text"
+        name="author"
+        ref={authorRef}
+        placeholder="Enter Author"
+      />
+      장르
+      <input
+        type="text"
+        name="genre"
+        ref={genreRef}
+        placeholder="Enter Genre"
+      />
+      줄거리
+      <textarea
+        type="text"
+        name="summary"
+        ref={summaryRef}
+        placeholder="Enter Summary"
+      />
+    </div>
 
-      <button onClick={add} type="submit">생성</button>
+    <button onClick={add} type="submit">
+      생성
+    </button>
   </div>
+);
     
             
-    );
+  
 }
 

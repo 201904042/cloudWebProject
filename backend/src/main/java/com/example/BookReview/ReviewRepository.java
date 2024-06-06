@@ -9,4 +9,5 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review,Long> {
     List<Review> findByContentContainingOrNameContaining(String content, String name);
 
+
 }

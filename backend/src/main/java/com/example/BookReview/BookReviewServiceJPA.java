@@ -100,12 +100,20 @@ public class BookReviewServiceJPA implements BookReviewService{
 
     @Override
     public void deleteReview(Long id) {
-        Optional<Book> optionalBook = bookRepository.findById(id);
-        Book book = optionalBook.get();
-        book.setReview_count(book.getReview_count()-1);
-        bookRepository.save(book);
+        Optional<Review> reviewOptional = reviewRepository.findById(id);
+        if (reviewOptional.isPresent()) {
+            Review review = reviewOptional.get();
+            reviewRepository.deleteById(id); // 리뷰 삭제
 
-        reviewRepository.deleteById(id);
+            // 해당 책의 review_count 감소
+            Long bookId = review.getBook_id();
+            Book book = bookRepository.findById(bookId).orElse(null);
+            if (book != null) {
+                long currentReviewCount = book.getReview_count();
+                book.setReview_count(currentReviewCount - 1);
+                bookRepository.save(book); // 책 정보 업데이트
+            }
+        }
     }
 
     @Override

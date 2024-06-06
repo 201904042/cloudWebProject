@@ -3,6 +3,7 @@ import { getBooks } from "../services/ApiService"
 import BookTableRow from './BookTableRow.js';
 import { BookContext } from '../context/BookContext';
 import {NavLink} from "react-router-dom";
+import './bookList.css';
 
 export default function BookList(){
   const { books, updateBooks} = useContext(BookContext);
@@ -23,6 +24,7 @@ export default function BookList(){
 
 
   return (
+    
     <div>
       <h1>Book List</h1>
 
@@ -42,7 +44,7 @@ export default function BookList(){
         </tbody>
       </table>
       <div>
-        <NavLink className="btn btn-primary" to="/new">Add</NavLink>
+        <NavLink to="/newBook">Add</NavLink>
       </div>
       </div>
   );
