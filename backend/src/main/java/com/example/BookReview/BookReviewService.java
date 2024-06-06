@@ -29,5 +29,8 @@ public interface BookReviewService {
 
     void deleteReview(Long id);
 
+    ReviewDTO updateReview(long id, ReviewDTO reviewDTO);
+
     List<ReviewDTO> searchReviews(String keyword);
+
 }

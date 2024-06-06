@@ -84,6 +84,11 @@ public class BookReviewController {
         bookReviewService.deleteReview(id);
         return ResponseEntity.noContent().build();
     }
+    @PutMapping("/reviews/{id}")
+    public ResponseEntity<ReviewDTO> updateReview(@PathVariable long id, @RequestBody ReviewDTO reviewDTO) {
+        ReviewDTO updatedReview = bookReviewService.updateReview(id, reviewDTO);
+        return ResponseEntity.ok(updatedReview);
+    }
 
     @GetMapping("/reviews/search")
     public List<ReviewDTO> searchReviews(@RequestParam String keyword) {

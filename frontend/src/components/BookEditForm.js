@@ -1,19 +1,36 @@
-import React, { useContext, useRef, useState } from "react";
-import { createBook } from "../services/ApiService";
-import { BookContext } from "../context/BookContext";
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useRef, useState, useEffect } from 'react';
+import { getBookById, updateBookById } from "../services/ApiService";
+import { BookContext } from '../context/BookContext';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function BookCreateForm() {
-  const { addBook } = useContext(BookContext);
+export default function BookUpdateForm() {
+  const { id } = useParams();
   const navigate = useNavigate();
+  const { updateBooks } = useContext(BookContext);
   const titleRef = useRef();
   const authorRef = useRef();
-  const [genre, setGenre] = useState("소설");
+  const [genre, setGenre] = useState("");
   const [customGenre, setCustomGenre] = useState("");
   const summaryRef = useRef();
   const [errorMessage, setErrorMessage] = useState("");
 
-  async function add(target) {
+  async function fetchData() {
+    try {
+      const book = await getBookById(id);
+      titleRef.current.value = book.title;
+      authorRef.current.value = book.author;
+      setGenre(book.genre);
+      summaryRef.current.value = book.summary;
+    } catch (error) {
+      console.error('error', error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  async function update(target) {
     target.preventDefault();
     if (
       !titleRef.current.value ||
@@ -26,19 +43,20 @@ export default function BookCreateForm() {
     }
 
     try {
-      const newBook = {
+      const updatedBook = {
+        id: id,
         title: titleRef.current.value,
         author: authorRef.current.value,
         genre: genre === "기타" ? customGenre : genre,
         summary: summaryRef.current.value
       };
 
-      console.log(newBook);
+      console.log(updatedBook);
 
-      const response = await createBook(newBook);
-      console.log(response);
-      addBook(response);
-      navigate(`/book`);
+      await updateBookById(id, updatedBook);
+      updateBooks([updatedBook]);
+
+      navigate(`/book/inform/${id}`);
 
     } catch (error) {
       console.error('Error', error);
@@ -62,7 +80,7 @@ export default function BookCreateForm() {
   return (
     <div className="create-form">
       <div className="header-container">
-        <h1>책 등록</h1>
+        <h1>책 수정</h1>
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         <div className="main-btn">
           <button onClick={goToMain}>취소</button>
@@ -74,15 +92,15 @@ export default function BookCreateForm() {
         <input
           type="text"
           name="title"
-          placeholder="Enter Title"
+          defaultValue=""
           ref={titleRef}
         />
         저자
         <input
           type="text"
           name="author"
+          defaultValue=""
           ref={authorRef}
-          placeholder="Enter Author"
         />
         장르
         <select
@@ -90,6 +108,7 @@ export default function BookCreateForm() {
           value={genre}
           onChange={handleGenreChange}
         >
+          <option value="">장르 선택</option>
           <option value="소설">소설</option>
           <option value="판타지">판타지</option>
           <option value="SF">SF</option>
@@ -117,13 +136,13 @@ export default function BookCreateForm() {
         <textarea
           type="text"
           name="summary"
+          defaultValue=""
           ref={summaryRef}
-          placeholder="Enter Summary"
         />
       </div>
 
-      <button onClick={add} type="submit">
-        생성
+      <button onClick={update} type="submit">
+        수정
       </button>
     </div>
   );

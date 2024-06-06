@@ -1,16 +1,36 @@
-.create-form {
+
+.book-table {
+    width: 500px;
+    border-collapse: collapse;
+  }
+  
+  .book-table th,
+  .book-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .book-table th:nth-child(5),
+.book-table td:nth-child(5) {
+  width: 50%;
+}
+
+.book-table th:nth-child(6),
+.book-table td:nth-child(6) {
+  width: 10%;
+}
+
+  .book-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .create-form {
     width: 90%;
     margin: 0 auto;
     padding: 20px;
   }
   
-  .header-container h1 {
-    margin-bottom: 0;
-  }
-  
-  .main-btn {
-    margin-left: auto;
-  }
   .create-form div {
     display: flex;
     flex-direction: column;
@@ -39,5 +59,153 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+  }
+  
+
+  .update-form {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .header-container h1 {
+    margin-bottom: 0;
+  }
+  
+  .main-btn {
+    margin-left: auto;
+  }
+  .update-form div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .update-form input,
+  .update-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 5px;
+  }
+  
+  .update-form textarea {
+    height: 150px;
+  }
+  
+  .update-form button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+
+
+.book-inform-container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+
+  .book-inform-container h2 {
+    margin-bottom: 20px;
+  }
+
+  .book-inform-container button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .book-inform-container button:last-child {
+    background-color: #f44336;
+  }
+
+  .book-details {
+    margin-bottom: 20px;
+  }
+  
+  .book-details p {
+    margin: 5px 0;
+  }
+  
+
+  .review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .review-form input,
+  .review-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .review-form textarea {
+    height: 100px;
+  }
+
+  .reviews-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .reviews-table th,
+  .reviews-table td {
+
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .reviews-table th:nth-child(1),
+.reviews-table td:nth-child(1) {
+  width: 5%;
+}
+
+.reviews-table th:nth-child(2),
+.reviews-table td:nth-child(2) {
+  width: 10%;
+}
+
+.reviews-table th:nth-child(3),
+.reviews-table td:nth-child(3) {
+  width: 5%;
+}
+
+.reviews-table th:nth-child(4),
+.reviews-table td:nth-child(4) {
+  width: 70%;
+}
+
+.reviews-table th:nth-child(5),
+.reviews-table td:nth-child(5) {
+  width: 10%;
+}
+  
+  .reviews-table th {
+    background-color: #f2f2f2;
+  }
+
+  .error-message {
+    color: red;
+    margin-bottom: 20px;
   }
   

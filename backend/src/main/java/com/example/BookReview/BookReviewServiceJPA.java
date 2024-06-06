@@ -117,6 +117,19 @@ public class BookReviewServiceJPA implements BookReviewService{
     }
 
     @Override
+    public ReviewDTO updateReview(long id, ReviewDTO reviewDTO){ //책의 id를 기반으로 해당 책 데이터를 찾고 입력된 정보로 업데이트
+        Optional<Review> updateReview = reviewRepository.findById(id);
+        Review reviewToUpdate = updateReview.get();
+
+        reviewToUpdate.setName(reviewDTO.getName());
+        reviewToUpdate.setGrade(reviewDTO.getGrade());
+        reviewToUpdate.setContent(reviewDTO.getContent());
+
+        Review updatedReview = reviewRepository.save(reviewToUpdate);
+        return convertToReviewDTO(updatedReview);
+    }
+
+    @Override
     public List<ReviewDTO> searchReviews(String keyword) {
         return reviewRepository.findByContentContainingOrNameContaining(keyword, keyword).stream()
                 .map(this::convertToReviewDTO)
