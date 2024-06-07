@@ -50,6 +50,15 @@ export const getBooks = async () => {
     }
   }
 
+  export const searchBooks = async (keyword) => {
+    try {
+      const response = await axios.get(`${bookApiUrl}/search`, {params: {keyword: encodeURIComponent(keyword)}});
+      return response.data;
+    } catch (error) {
+      console.error('Searching books failed:', error);
+      throw error;
+    }
+  }
   
 
   export const getReviews = async () => {

@@ -1,5 +1,5 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
-import { deleteReviewById, getReviewById, updateReviewById } from "../services/ApiService"
+import React, { useContext, useState, useRef } from 'react';
+import { deleteReviewById, updateReviewById } from "../services/ApiService"
 import { ReviewContext } from '../context/ReveiwContext';
 import './reviewList.css';
 
@@ -39,10 +39,10 @@ export default function ReviewList({id, review}){
       !gradeRef.current.value ||
       !contentRef.current.value
     ) {
-      setErrorMessage("리뷰를 작성해주세요.");
+      setErrorMessage("모든 필드를 작성해주세요.");
       return;
     }
-    setErrorMessage("");
+    
     try {
       const update = {
         name: nameRef.current.value,
@@ -50,6 +50,7 @@ export default function ReviewList({id, review}){
         content: contentRef.current.value
       };
       console.log(update)
+      setErrorMessage("");
 
       const response = await updateReviewById(id, update);
       console.log(response);
