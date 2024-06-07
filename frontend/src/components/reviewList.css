@@ -1,0 +1,16 @@
+.review {
+    padding: 10px 10px
+}
+
+span.name {
+    font-weight: bold;
+}
+
+.error {
+    font-size: 10px;
+    color: red;
+}
+
+span.button {
+    float: right;
+}
