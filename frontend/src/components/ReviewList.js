@@ -67,7 +67,7 @@ export default function ReviewList({id, review}){
   return ( <div className='review'>
       { showReviewEditForm ?
       
-      <div>
+      <div className="review-form">
         <input
         className='name'
         type='text'
@@ -91,11 +91,6 @@ export default function ReviewList({id, review}){
         <option value="4.5">4.5</option>
         <option value="5">5</option></select>
         <span className='error'>{errorMessage}</span>
-        <span className='button'>
-          <button onClick={handleCancelEditReview} className='button'>취소</button>
-          <button onClick={handleConfirmEditReview} className='button'>수정 완료</button>
-        </span>
-        <br/>
         <textarea
         className='content'
         type="text"
@@ -104,6 +99,11 @@ export default function ReviewList({id, review}){
         ref={contentRef}
         placeholder="Edit Comment"
         ></textarea>
+
+<span className='button'>
+          <button onClick={handleCancelEditReview} className='button'>취소</button>
+          <button onClick={handleConfirmEditReview} className='button'>수정 완료</button>
+        </span>
       </div>
       
       :  <div>
