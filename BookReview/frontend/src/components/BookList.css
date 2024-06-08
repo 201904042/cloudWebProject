@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .book-table {
   width: 100%;
   border-collapse: collapse;

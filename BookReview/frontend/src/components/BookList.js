@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import { getBooks } from "../services/ApiService";
+import React, { useContext, useEffect, useState } from "react";
+import { getBooks, searchBooks } from "../services/ApiService";
 import BookTableRow from "./BookTableRow.js";
 import { BookContext } from "../context/BookContext";
 import { NavLink } from "react-router-dom";
@@ -7,6 +7,8 @@ import "./BookList.css";
 
 export default function BookList() {
   const { books, updateBooks } = useContext(BookContext);
+  const [keyword, setKeyword] = useState(""); /*윤유빈 06.08 수정 */
+  const [searchResults, setSearchResults] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -18,12 +20,36 @@ export default function BookList() {
       }
     }
     fetchData();
-  }, []);
+  }, [updateBooks]);
 
+  /*윤유빈 06.08 수정 */
+  const handleSearch = async () => {
+    try {
+      const results = await searchBooks(keyword);
+      setSearchResults(results);
+    } catch (error) {
+      console.error("error", error);
+    }
+  };
+
+  /*윤유빈 06.08 수정  search container 랑 tbody*/
   return (
     <div className="book-list">
-      <h1>Book List</h1>
-
+      <div className="header-container">
+        <h1>Book List</h1>
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search by title or author"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+          />
+          <button onClick={handleSearch}>Search</button>
+        </div>
+      </div>
+      {searchResults !== null && searchResults.length === 0 && (
+        <div className="no-results">없습니다.</div>
+      )}
       <table className="book-table">
         <thead>
           <tr>
@@ -36,7 +62,7 @@ export default function BookList() {
           </tr>
         </thead>
         <tbody>
-          {books.map((book) => (
+          {(searchResults !== null ? searchResults : books).map((book) => (
             <BookTableRow key={book.id} {...book} />
           ))}
         </tbody>
