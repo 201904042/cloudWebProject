@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca99282d-0e2d-4c10-9dd4-3e84cac549b0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/BookReview/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/BookReview/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookReview/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookReview/.env.production" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookReview/src/main/resources/application-prod.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookReview/src/main/java/com/example/BookReview/BookReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BookReview/src/main/java/com/example/BookReview/BookReviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookReview/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BookReview/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,14 +38,30 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "psh__DTO",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/packt/git/cloudWebProject/BookReview",
+    "last_opened_file_path": "C:/Users/packt/git/cloudWebProject",
     "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="cloudWebProject" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="cloudWebProject" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
