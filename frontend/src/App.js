@@ -13,6 +13,7 @@ function App() {
           <ReviewListProvider>
           <div className="container">
           <Routes>
+          <Route path="/" element={<BookList/>} />
             <Route path="/book" element={<BookList/>} />
             <Route path="/newBook" element={<BookCreateForm />} />
             <Route path="/book/inform/:id" element={<BookInform />} />
