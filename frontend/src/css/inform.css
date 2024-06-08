@@ -1,0 +1,36 @@
+
+
+
+.book-inform-container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  
+  .book-inform-container h2 {
+    margin-bottom: 20px;
+  }
+  
+  .book-inform-container button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .book-inform-container button:last-child {
+    background-color: #f44336;
+  }
+  
+  .book-details {
+    margin-bottom: 20px;
+  }
+  
+  .book-details p {
+    margin: 5px 0;
+  }
+  

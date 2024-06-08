@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useState, useRef } from 'react';
 import { getBookById, getReviews, createReview } from "../services/ApiService";
 import { BookContext } from '../context/BookContext';
 import { useParams, useNavigate } from 'react-router-dom';
-import ReviewTableRow from './ReviewTableRow';
-import { ReviewContext } from '../context/ReveiwContext';
 
+import { ReviewContext } from '../context/ReveiwContext';
+import ReviewList from './ReviewList';
+import '../css/inform.css'
 
 export default function BookInform() {
   const { id } = useParams();
@@ -65,11 +66,9 @@ export default function BookInform() {
       console.log(response);
       addReview(response);
 
-      // Fetch updated book information
       fetchData();
 
       setShowReviewForm(false);
-
     } catch (error) {
       console.error('Error', error);
     }
@@ -110,7 +109,6 @@ export default function BookInform() {
           /><br />
           점수
           <select name="grade" ref={gradeRef}>
-            <option value="0">0</option>
             <option value="0.5">0.5</option>
             <option value="1">1</option>
             <option value="1.5">1.5</option>
@@ -134,20 +132,13 @@ export default function BookInform() {
         </div>
       )}
       {errorMessage && <p className="error-message">{errorMessage}</p>}
+      
       <hr/>
-      <table className="reviews-table">
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>이름(닉네임)</th>
-            <th>점수</th>
-            <th>리뷰</th>
-          </tr>
-        </thead>
-        <tbody>
-          {reviews.map(review => <ReviewTableRow key={review.id} {...review} fetchData={fetchData} />)}
-        </tbody>
-      </table>
+      <div className='reviews'>
+        {reviews.map(review=> {
+            if (review.book_id === parseInt(id))
+              return (<ReviewList key={review.id}{...review} review={review}/>)})}
+        </div>
     </div>
   );
 }

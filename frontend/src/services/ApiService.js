@@ -50,6 +50,14 @@ export const getBooks = async () => {
     }
   }
 
+  export const searchBooks = async (keyword) => {
+    try {
+      const response = await axios.get(`${bookApiUrl}/search?keyword=${keyword}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }; 
   
 
   export const getReviews = async () => {

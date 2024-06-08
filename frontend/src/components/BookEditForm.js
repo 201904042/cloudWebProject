@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState, useEffect } from 'react';
 import { getBookById, updateBookById } from "../services/ApiService";
 import { BookContext } from '../context/BookContext';
 import { useNavigate, useParams } from 'react-router-dom';
-
+import '../css/Form.css'
 export default function BookUpdateForm() {
   const { id } = useParams();
   const navigate = useNavigate();
